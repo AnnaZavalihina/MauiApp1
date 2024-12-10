@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.RegisterPage"
+             Title="RegisterPage">
+    
+    <StackLayout VerticalOptions="Center" Padding="20">
+        <Entry x:Name="emailEntry" Placeholder="Email" Text="{Binding Account.Email, Mode=TwoWay}"/>
+        
+        <Entry x:Name="usernameEntry" Placeholder="Username" Text="{Binding Account.Username, Mode=TwoWay}"/>
+        
+        <Grid>
+            <Entry Placeholder="Password"
+           IsPassword="{Binding IsPassword}"
+           Text="{Binding Account.Password, Mode=TwoWay}" />
+            <Button ImageSource="{Binding IsPassword, Converter={StaticResource BoolToEyeConverter}}"
+            Command="{Binding TogglePasswordVisibilityCommand}"
+            HorizontalOptions="End" />
+        </Grid>
+        <Grid>
+            <Entry Placeholder="Repeat Password"
+           IsPassword="{Binding IsPassword2}"
+           Text="{Binding Account.PasswordRepeat, Mode=TwoWay}" />
+            <Button ImageSource="{Binding IsPassword, Converter={StaticResource BoolToEyeConverter}}"
+            Command="{Binding TogglePasswordVisibilityCommand}"
+            HorizontalOptions="End" />
+        </Grid>
+        <Label x:Name="errorLabel"
+               Text="{Binding Error.Message}"
+               TextColor="Red"
+               IsVisible ="{Binding Error.IsVisible}"
+               Margin="5,0" />
+
+        <Button x:Name="registerButton"
+                Text="Register"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                Command="{Binding RegisterCommand}" />
+
+        <Button x:Name="goToLoginButton"
+                Text="Go to Login"
+                BackgroundColor="Transparent"
+                TextColor="#4CAF50"
+                Command="{Binding GoToLoginCommand}" />
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,35 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.LoginPage"
+             Title="Login Page">
+    
+    <StackLayout VerticalOptions="Center" Padding="20">
+        <Entry Placeholder="Login"
+               Text="{Binding Account.Login, Mode=TwoWay}" />
+
+        <Grid>
+            <Entry Placeholder="Password"
+                   IsPassword="{Binding IsPassword}"
+                   Text="{Binding Account.Password, Mode=TwoWay}" />
+            <Button ImageSource="{Binding IsPassword, Converter={StaticResource BoolToEyeConverter}}"
+                    Command="{Binding TogglePasswordVisibilityCommand}"
+                    HorizontalOptions="End" />
+        </Grid>
+
+        <Label x:Name="errorLabel"
+                Text="{Binding Error.Message, Mode=TwoWay}"
+                TextColor="Red"
+                IsVisible ="{Binding Error.IsVisible, Mode=TwoWay}"
+                Margin="5,0" />
+
+        <Button Text="Login"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                Command="{Binding LoginCommand}" />
+
+        <Button Text="Go to Register"
+                BackgroundColor="Transparent"
+                TextColor="#4CAF50"
+                Command="{Binding GoToRegisterCommand}" />
+    </StackLayout>
+</ContentPage>
