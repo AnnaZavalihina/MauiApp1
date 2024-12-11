@@ -9,13 +9,11 @@ using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
 
         private readonly LoginValidator _validator;
-
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         private LoginModel _account = new LoginModel();
 
@@ -98,11 +96,6 @@ namespace MauiApp1.ViewModels
         private void OnTogglePasswordVisibility()
         {
             IsPassword = !IsPassword;
-        }
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

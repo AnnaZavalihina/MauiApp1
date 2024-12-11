@@ -11,9 +11,9 @@
         
         <Grid>
             <Entry Placeholder="Password"
-           IsPassword="{Binding PasswordVisibility.IsPasswordVisible}"
+           IsPassword="{Binding IsPassword}"
            Text="{Binding Account.Password, Mode=TwoWay}" />
-            <ImageButton Source="{Binding PasswordVisibility.IsPasswordVisible, Converter={StaticResource BoolToEyeConverter}}"
+            <ImageButton Source="{Binding IsPassword, Converter={StaticResource BoolToEyeConverter}}"
                     Command="{Binding TogglePasswordVisibilityCommand}"
                     HorizontalOptions="End" 
                     WidthRequest="24"  
@@ -23,9 +23,9 @@
         
         <Grid>
             <Entry Placeholder="Repeat Password"
-           IsPassword="{Binding PasswordVisibility.IsPasswordRepeatVisible}"
+           IsPassword="{Binding IsPasswordRepeat}"
            Text="{Binding Account.PasswordRepeat, Mode=TwoWay}" />
-            <ImageButton Source="{Binding PasswordVisibility.IsPasswordRepeatVisible, Converter={StaticResource BoolToEyeConverter}}"
+            <ImageButton Source="{Binding IsPasswordRepeat, Converter={StaticResource BoolToEyeConverter}}"
                     Command="{Binding TogglePasswordRepeatVisibilityCommand}"
                     HorizontalOptions="End" 
                     WidthRequest="24"  

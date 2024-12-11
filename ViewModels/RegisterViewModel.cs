@@ -9,11 +9,10 @@ using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
 {
-    public class RegisterViewModel : INotifyPropertyChanged
+    public class RegisterViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private readonly RegistrationValidator _validator;
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         private RegisterModel _account = new RegisterModel();
 
@@ -45,15 +44,29 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        private (bool IsPasswordVisible, bool IsPasswordRepeatVisible) _passwordVisibility = (true, true);
-        public (bool IsPasswordVisible, bool IsPasswordRepeatVisible) PasswordVisibility
+        private bool _isPassword = true;
+        private bool _isPasswordRepeat = true;
+
+        public bool IsPassword
         {
-            get => _passwordVisibility;
+            get => _isPassword;
             set
             {
-                if (_passwordVisibility != value)
+                if (_isPassword != value)
                 {
-                    _passwordVisibility = value;
+                    _isPassword = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public bool IsPasswordRepeat
+        {
+            get => _isPasswordRepeat;
+            set
+            {
+                if (_isPasswordRepeat != value)
+                {
+                    _isPasswordRepeat = value;
                     OnPropertyChanged();
                 }
             }
@@ -84,7 +97,7 @@ namespace MauiApp1.ViewModels
 
             if (!result.IsValid)
             {
-                Error.Message = string.Join("\n", result.Errors.Select(e => e.ErrorMessage));
+                Error.Message = result.Errors.Select(e => e.ErrorMessage).FirstOrDefault();
                 Error.IsVisible = true;
                 OnPropertyChanged(nameof(Error));
                 return;
@@ -106,18 +119,15 @@ namespace MauiApp1.ViewModels
             await _navigationService.NavigateToAsync("Login", null);
         }
 
+
         private void OnTogglePasswordVisibility()
         {
-            PasswordVisibility = (!PasswordVisibility.IsPasswordVisible, PasswordVisibility.IsPasswordRepeatVisible);
-        }
-        private void OnTogglePasswordRepeatVisibility()
-        {
-            PasswordVisibility = (PasswordVisibility.IsPasswordVisible, !PasswordVisibility.IsPasswordRepeatVisible);
+            IsPassword = !IsPassword;
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        private void OnTogglePasswordRepeatVisibility()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            IsPasswordRepeat = !IsPasswordRepeat;
         }
     }
 }
