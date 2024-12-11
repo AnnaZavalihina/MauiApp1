@@ -45,29 +45,15 @@ namespace MauiApp1.ViewModels
             }
         }
 
-        private bool _isPassword = true;
-        public bool IsPassword
+        private (bool IsPasswordVisible, bool IsPasswordRepeatVisible) _passwordVisibility = (true, true);
+        public (bool IsPasswordVisible, bool IsPasswordRepeatVisible) PasswordVisibility
         {
-            get => _isPassword;
+            get => _passwordVisibility;
             set
             {
-                if (_isPassword != value)
+                if (_passwordVisibility != value)
                 {
-                    _isPassword = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private bool _isPassword2 = true;
-        public bool IsPassword2
-        {
-            get => _isPassword2;
-            set
-            {
-                if (_isPassword2 != value)
-                {
-                    _isPassword2 = value;
+                    _passwordVisibility = value;
                     OnPropertyChanged();
                 }
             }
@@ -122,11 +108,11 @@ namespace MauiApp1.ViewModels
 
         private void OnTogglePasswordVisibility()
         {
-            IsPassword = !IsPassword;
+            PasswordVisibility = (!PasswordVisibility.IsPasswordVisible, PasswordVisibility.IsPasswordRepeatVisible);
         }
         private void OnTogglePasswordRepeatVisibility()
         {
-            IsPassword2 = !IsPassword2;
+            PasswordVisibility = (PasswordVisibility.IsPasswordVisible, !PasswordVisibility.IsPasswordRepeatVisible);
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")

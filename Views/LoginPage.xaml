@@ -11,9 +11,12 @@
             <Entry Placeholder="Password"
                    IsPassword="{Binding IsPassword}"
                    Text="{Binding Account.Password, Mode=TwoWay}" />
-            <Button ImageSource="{Binding IsPassword, Converter={StaticResource BoolToEyeConverter}}"
+            <ImageButton Source="{Binding IsPassword, Converter={StaticResource BoolToEyeConverter}}"
                     Command="{Binding TogglePasswordVisibilityCommand}"
-                    HorizontalOptions="End" />
+                    HorizontalOptions="End" 
+                    WidthRequest="24"  
+                    HeightRequest="24"
+                    Aspect="AspectFit"/>
         </Grid>
 
         <Label x:Name="errorLabel"

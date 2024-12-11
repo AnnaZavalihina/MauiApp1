@@ -82,7 +82,7 @@ namespace MauiApp1.ViewModels
 
             if (!result.IsValid)
             {
-                Error.Message = string.Join("\n", result.Errors.Select(e => e.ErrorMessage));
+                Error.Message = result.Errors.Select(x=>x.ErrorMessage).FirstOrDefault();
                 Error.IsVisible = true;
                 OnPropertyChanged(nameof(Error));
                 return;
