@@ -424,4 +424,14 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <Style x:Key="AuthButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="CustomFont-Bold" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="#6200EE" />
+        <Setter Property="CornerRadius" Value="25" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
 </ResourceDictionary>

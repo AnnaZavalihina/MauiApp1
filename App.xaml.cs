@@ -12,7 +12,8 @@ namespace MauiApp1
 
             InitializeComponent();
 
-            MainPage = new AppShell(navigationService);
+            MainPage = new AppShell(navigationService);  
+            _navigationService.InitializeAsync();
         }
     }
 }

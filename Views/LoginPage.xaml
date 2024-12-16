@@ -1,6 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.LoginPage"
+             x:Class="MauiApp1.Views.LoginPage"
              Title="Login Page">
     
     <StackLayout VerticalOptions="Center" Padding="20">
@@ -25,11 +25,15 @@
                 IsVisible ="{Binding Error.IsVisible, Mode=TwoWay}"
                 Margin="5,0" />
 
-        <Button Text="Login"
-                BackgroundColor="#4CAF50"
-                TextColor="White"
+        <Button Style="{StaticResource AuthButtonStyle}"
+            Text="Login"
                 Command="{Binding LoginCommand}" />
 
+        <Button 
+            Style="{StaticResource AuthButtonStyle}"
+            Text="Home"
+        Command="{Binding HomeCommand}" />
+        
         <Button Text="Go to Register"
                 BackgroundColor="Transparent"
                 TextColor="#4CAF50"

@@ -3,11 +3,16 @@
     x:Class="MauiApp1.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MauiApp1"
+    xmlns:local="clr-namespace:MauiApp1.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="MauiApp1">
 
     <ShellContent Title="Login" Route="login" ContentTemplate="{DataTemplate local:LoginPage}" />
     <ShellContent Title="Register" Route="register" ContentTemplate="{DataTemplate local:RegisterPage}" />
-    <ShellContent Title="Home" Route="home" ContentTemplate="{DataTemplate local:HomePage}" />
+
+    <!-- Раздел меню -->
+    <FlyoutItem Title="Menu" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Home" Route="home" ContentTemplate="{DataTemplate local:HomePage}" />
+        <ShellContent Title="Photo" Route="photo" ContentTemplate="{DataTemplate local:PhotoCollectionPage}" />
+    </FlyoutItem>
 </Shell>
