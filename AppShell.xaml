@@ -10,6 +10,4 @@
     <ShellContent Title="Login" Route="login" ContentTemplate="{DataTemplate local:LoginPage}" />
     <ShellContent Title="Register" Route="register" ContentTemplate="{DataTemplate local:RegisterPage}" />
     <ShellContent Title="Home" Route="home" ContentTemplate="{DataTemplate local:HomePage}" />
-
-
 </Shell>

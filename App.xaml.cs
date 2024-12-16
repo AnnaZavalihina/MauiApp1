@@ -1,12 +1,18 @@
-﻿namespace MauiApp1
+﻿using MauiApp1.Services;
+
+namespace MauiApp1
 {
     public partial class App : Application
     {
-        public App()
+        private readonly INavigationService _navigationService;
+
+        public App(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new AppShell(navigationService);
         }
     }
 }
