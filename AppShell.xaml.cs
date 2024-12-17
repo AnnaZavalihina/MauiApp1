@@ -1,4 +1,5 @@
 ﻿using MauiApp1.Services;
+using MauiApp1.Views;
 
 namespace MauiApp1
 {
@@ -10,14 +11,13 @@ namespace MauiApp1
         {
             _navigationService = navigationService;
 
-            AppShell.InitializeRouting();
             InitializeComponent();
+            _ = InitializeAsync(); 
         }
-        private static void InitializeRouting()
+
+        private async Task InitializeAsync()
         {
-            Routing.RegisterRoute("Login", typeof(LoginPage));
-            Routing.RegisterRoute("Register", typeof(RegisterPage));
-            Routing.RegisterRoute("Home", typeof(HomePage));
+            await _navigationService.NavigateToAsync("Login");
         }
     }
 }

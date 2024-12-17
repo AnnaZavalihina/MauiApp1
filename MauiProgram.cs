@@ -3,6 +3,7 @@ using MauiApp1.Models;
 using MauiApp1.Services;
 using MauiApp1.Validators;
 using MauiApp1.ViewModels;
+using MauiApp1.Views;
 using Microsoft.Extensions.Logging;
 
 namespace MauiApp1
@@ -16,6 +17,7 @@ namespace MauiApp1
             .ConfigureFonts(
                 fonts =>
                 {
+                    fonts.AddFont("PlaywriteDEVAGuides-Regular.ttf", "CustomRegular");
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
@@ -40,6 +42,8 @@ namespace MauiApp1
             mauiAppBuilder.Services.AddSingleton<RegisterViewModel>();
             mauiAppBuilder.Services.AddSingleton<LoginViewModel>();
 
+            mauiAppBuilder.Services.AddSingleton<PhotoCollectionViewModel>();
+
             return mauiAppBuilder;
         }
 
@@ -47,6 +51,8 @@ namespace MauiApp1
         {
             mauiAppBuilder.Services.AddTransient<LoginPage>();
             mauiAppBuilder.Services.AddTransient<RegisterPage>();
+
+            mauiAppBuilder.Services.AddTransient<PhotoCollectionPage>();
 
             return mauiAppBuilder;
         }
