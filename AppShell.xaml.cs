@@ -11,15 +11,13 @@ namespace MauiApp1
         {
             _navigationService = navigationService;
 
-            InitializeRouting();
             InitializeComponent();
+            _ = InitializeAsync(); 
         }
-        private static void InitializeRouting()
+
+        private async Task InitializeAsync()
         {
-            Routing.RegisterRoute("Login", typeof(LoginPage));
-            Routing.RegisterRoute("Register", typeof(RegisterPage));
-            Routing.RegisterRoute("Home", typeof(HomePage));
-            Routing.RegisterRoute("Photo", typeof(PhotoCollectionPage));
+            await _navigationService.NavigateToAsync("Login");
         }
     }
 }

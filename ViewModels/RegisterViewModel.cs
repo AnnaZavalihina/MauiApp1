@@ -110,12 +110,12 @@ namespace MauiApp1.ViewModels
                 return;
             }
 
-            await _navigationService.NavigateToAsync("Home", null);
+            await _navigationService.NavigateToAsync("///Home");
         }
 
         private async void OnGoToLogin()
         {
-            await _navigationService.NavigateToAsync("Login", null);
+            await _navigationService.NavigateToAsync("///Login");
         }
 
 

@@ -86,17 +86,17 @@ namespace MauiApp1.ViewModels
                 OnPropertyChanged(nameof(Error));
                 return;
             }
-            await _navigationService.NavigateToAsync("Photo", null);
+            await _navigationService.NavigateToAsync("///Photo");
         }
 
         private async void OnGoToRegister()
         {
-            await _navigationService.NavigateToAsync("Register", null);
+            await _navigationService.NavigateToAsync("///Register");
         }
 
         private async void GoToHome()
         {
-            await _navigationService.NavigateToAsync("Home", null);
+            await _navigationService.NavigateToAsync("///Home");
         }
 
         private void OnTogglePasswordVisibility()
