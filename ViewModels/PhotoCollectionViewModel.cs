@@ -1,4 +1,5 @@
-﻿using MauiApp1.Models;
+﻿using MauiApp1.Data;
+using MauiApp1.Models;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -8,13 +9,39 @@ namespace MauiApp1.ViewModels
     {
         public ObservableCollection<Photo> Photos { get; set; } = new ObservableCollection<Photo>();
 
+        private readonly DbService _databaseService;
+
         public ICommand AddExistingPhoto { get; }
         public ICommand AddNewPhoto { get; }
+        public ICommand LoadPhotosCommand { get; }
 
-        public PhotoCollectionViewModel() 
+        public PhotoCollectionViewModel(DbService databaseService) 
         {
+            _databaseService = databaseService;
+
             AddExistingPhoto = new Command(async () => await PickPhotoAsync());
             AddNewPhoto = new Command(async () => await TakePhotoAsync());
+            LoadPhotosCommand = new Command(async () => await LoadPhotosAsync());
+
+            _ = LoadPhotosAsync();
+        }
+
+        private async Task LoadPhotosAsync()
+        {
+            try
+            {
+                Photos.Clear();
+
+                var photos = await _databaseService.GetImagesAsync();
+                foreach (var photo in photos)
+                {
+                    Photos.Add(photo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка загрузки фото: {ex.Message}");
+            }
         }
 
         private async Task TakePhotoAsync()
@@ -32,12 +59,16 @@ namespace MauiApp1.ViewModels
 
                     if (photo != null)
                     {
-                        var stream = await photo.OpenReadAsync();
-                        Photos.Add(new Photo
+                        var fileName = Path.GetFileName(photo.FullPath);
+                        var photoModel = new Photo
                         {
-                            Title = Path.GetFileName(photo.FullPath),
+                            Title = fileName,
                             ImageUrl = photo.FullPath
-                        });
+                        };
+
+                        await _databaseService.AddImageAsync(photoModel);
+
+                        Photos.Add(photoModel);
                     }
                 }
             }
@@ -58,12 +89,16 @@ namespace MauiApp1.ViewModels
 
                 if (photo != null)
                 {
-                    var stream = await photo.OpenReadAsync();
-                    Photos.Add(new Photo
+                    var fileName = Path.GetFileName(photo.FullPath);
+                    var photoModel = new Photo
                     {
-                        Title = Path.GetFileName(photo.FullPath),
-                        ImageUrl = photo.FullPath 
-                    });
+                        Title = fileName,
+                        ImageUrl = photo.FullPath
+                    };
+
+                    await _databaseService.AddImageAsync(photoModel);
+
+                    Photos.Add(photoModel);
                 }
             }
             catch (Exception ex)

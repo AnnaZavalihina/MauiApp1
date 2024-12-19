@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
-using MauiApp1.Models;
+using MauiApp1.Data;
+using MauiApp1.Models.Response;
 using MauiApp1.Services;
 using MauiApp1.Validators;
 using MauiApp1.ViewModels;
@@ -29,6 +30,7 @@ namespace MauiApp1
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
+            mauiAppBuilder.Services.AddSingleton<DbService>();
 
 #if DEBUG
             mauiAppBuilder.Logging.AddDebug();

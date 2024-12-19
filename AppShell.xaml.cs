@@ -1,5 +1,4 @@
 ﻿using MauiApp1.Services;
-using MauiApp1.Views;
 
 namespace MauiApp1
 {
@@ -17,7 +16,16 @@ namespace MauiApp1
 
         private async Task InitializeAsync()
         {
-            await _navigationService.NavigateToAsync("Login");
+            await _navigationService.NavigateToAsync("///Login");
+        }
+
+        private async void OnLogoutClicked(object sender, EventArgs e)
+        {
+            // Clear any user session or authentication tokens
+            // e.g., Preferences.Clear("UserToken");
+
+            // Redirect to LoginPage and reset navigation stack
+            await _navigationService.NavigateToAsync("///Login");
         }
     }
 }

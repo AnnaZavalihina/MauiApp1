@@ -13,4 +13,7 @@
         <ShellContent Title="Home" Route="Home" ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent Title="Photo" Route="Photo" ContentTemplate="{DataTemplate local:PhotoCollectionPage}" />
     </FlyoutItem>
+
+    <MenuItem Text="Logout" Clicked="OnLogoutClicked" />
+
 </Shell>
