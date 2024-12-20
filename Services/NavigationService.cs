@@ -2,10 +2,7 @@
 {
     public class NavigationService : INavigationService
     {
-        public Task InitializeAsync() =>
-        NavigateToAsync( "//Login");
-
-        public Task NavigateToAsync(string route, IDictionary<string, object> routeParameters = null)
+        public Task NavigateToAsync(string route, IDictionary<string, object>? routeParameters = null)
         {
             var shellNavigation = new ShellNavigationState(route);
 

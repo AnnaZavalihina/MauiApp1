@@ -1,10 +1,8 @@
 ﻿using FluentValidation.Results;
-using MauiApp1.Models;
 using MauiApp1.Models.Messages;
+using MauiApp1.Models.Response;
 using MauiApp1.Services;
 using MauiApp1.Validators;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
@@ -60,6 +58,8 @@ namespace MauiApp1.ViewModels
         }
 
         public ICommand LoginCommand { get; }
+        public ICommand HomeCommand { get; }
+
         public ICommand GoToRegisterCommand { get; }
         public ICommand TogglePasswordVisibilityCommand { get; }
 
@@ -69,6 +69,7 @@ namespace MauiApp1.ViewModels
 
             _validator = new LoginValidator();
 
+            HomeCommand = new Command(GoToHome);
             LoginCommand = new Command(OnLogin);
             GoToRegisterCommand = new Command(OnGoToRegister);
             TogglePasswordVisibilityCommand = new Command(OnTogglePasswordVisibility);
@@ -85,12 +86,17 @@ namespace MauiApp1.ViewModels
                 OnPropertyChanged(nameof(Error));
                 return;
             }
-            await _navigationService.NavigateToAsync("Home", null);
+            await _navigationService.NavigateToAsync("///Photo");
         }
 
         private async void OnGoToRegister()
         {
-            await _navigationService.NavigateToAsync("Register", null);
+            await _navigationService.NavigateToAsync("///Register");
+        }
+
+        private async void GoToHome()
+        {
+            await _navigationService.NavigateToAsync("///Home");
         }
 
         private void OnTogglePasswordVisibility()

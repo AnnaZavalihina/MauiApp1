@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MauiApp1.Models;
+using MauiApp1.Models.Response;
 
 namespace MauiApp1.Validators
 {

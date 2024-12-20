@@ -1,10 +1,8 @@
 ﻿using FluentValidation.Results;
-using MauiApp1.Models;
 using MauiApp1.Models.Messages;
+using MauiApp1.Models.Response;
 using MauiApp1.Services;
 using MauiApp1.Validators;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
@@ -12,6 +10,7 @@ namespace MauiApp1.ViewModels
     public class RegisterViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+
         private readonly RegistrationValidator _validator;
 
         private RegisterModel _account = new RegisterModel();
@@ -28,7 +27,7 @@ namespace MauiApp1.ViewModels
                 }
             }
         }
-
+        
         private ErrorMessage _error = new ErrorMessage();
 
         public ErrorMessage Error
@@ -111,12 +110,12 @@ namespace MauiApp1.ViewModels
                 return;
             }
 
-            await _navigationService.NavigateToAsync("Home", null);
+            await _navigationService.NavigateToAsync("///Home");
         }
 
         private async void OnGoToLogin()
         {
-            await _navigationService.NavigateToAsync("Login", null);
+            await _navigationService.NavigateToAsync("///Login");
         }
 
 

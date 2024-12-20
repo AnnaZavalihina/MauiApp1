@@ -2,9 +2,9 @@ using MauiApp1.ViewModels;
 
 namespace MauiApp1.Views;
 
-public partial class RegisterPage : ContentPage
+public partial class PhotoCollectionPage : ContentPage
 {
-	public RegisterPage(RegisterViewModel viewModel)
+	public PhotoCollectionPage(PhotoCollectionViewModel viewModel)
 	{
 		BindingContext = viewModel;
 
