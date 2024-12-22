@@ -10,14 +10,22 @@ namespace MauiApp1
         {
             _navigationService = navigationService;
 
-            AppShell.InitializeRouting();
             InitializeComponent();
+            _ = InitializeAsync(); 
         }
-        private static void InitializeRouting()
+
+        private async Task InitializeAsync()
         {
-            Routing.RegisterRoute("Login", typeof(LoginPage));
-            Routing.RegisterRoute("Register", typeof(RegisterPage));
-            Routing.RegisterRoute("Home", typeof(HomePage));
+            await _navigationService.NavigateToAsync("///Login");
+        }
+
+        private async void OnLogoutClicked(object sender, EventArgs e)
+        {
+            // Clear any user session or authentication tokens
+            // e.g., Preferences.Clear("UserToken");
+
+            // Redirect to LoginPage and reset navigation stack
+            await _navigationService.NavigateToAsync("///Login");
         }
     }
 }
